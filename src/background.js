@@ -1,26 +1,22 @@
 let requestFilter = {
   urls: ["<all_urls>"]
 };
+let extraInfoSpec = ['requestHeaders', 'blocking', 'extraHeaders'];
 
-let extraInfoSpec = ["requestHeaders", "blocking"];
 let handler = details => {
-  let isRefererSet = false;
-  let headers = details.requestHeaders,
-    blockingResponse = {};
+  let headers = details.requestHeaders;
+  let blockingResponse = {};
 
-  for (let i = 0, l = headers.length; i < l; ++i) {
+  let isRefererSet = false;
+  for (var i = 0, l = headers.length; i < l; i++) {
     if (headers[i].name.toLowerCase() == "referer") {
-      headers[i].value = "http://fb.com/";
+      headers[i].value = "https://fb.me/";
       isRefererSet = true;
-      break;
     }
   }
 
   if (!isRefererSet) {
-    headers.push({
-      name: "Referer",
-      value: "http://fb.com/"
-    });
+    headers.push({ name: "referer", value: "https://fb.me/" });
   }
 
   blockingResponse.requestHeaders = headers;
