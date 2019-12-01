@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name": "medium pro",
+    "description": "Medium use like pro",
+    "version": "0.0.1",
+    "icons": {
+      "16": "icons/medium.png",
+      "48": "icons/medium.png",
+      "128": "icons/medium.png"
+    },
+    "browser_action": {
+      "default_icon": "icons/medium.png"
+    },
+    "permissions": [
+      "https://*.medium.com/*",
+      "webRequest",
+      "webRequestBlocking",
+      "activeTab"
+    ],
+    "background": {
+      "matches": [
+          "https://medium.com/*"
+      ],
+      "scripts": ["src/background.js"],
+      "persistent": true
+    }
+  }
